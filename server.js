@@ -7,6 +7,7 @@ const db = require('./db/connect')
 const Jwt = require('./utils/jwt')
 const User = require('./db/model/userModel')
 const order =require('./router/order')
+const desk =require('./router/desk')
 // 启动服务器的同时连接数据库
 const app = express()
 var bodyParser = require('body-parser')
@@ -26,7 +27,7 @@ app.use('/Reservation/',(req, res, next)=>{
   res.header('Access-Control-Allow-Methods', '*');
   res.header('Content-Type', 'application/json;charset=utf-8');
   next();
-},[order])
+},[order,desk])
 //登录
 app.use('/user/',(req, res, next)=>{
   //解决跨域

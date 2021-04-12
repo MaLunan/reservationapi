@@ -168,9 +168,9 @@ define({ "api": [
   {
     "type": "get",
     "url": "/admin/wpPosts/delWpPosts",
-    "title": "删除文章",
+    "title": "删除 ",
     "name": "delWpPosts",
-    "group": "文章管理",
+    "group": " 管理",
     "parameter": {
       "fields": {
         "Parameter": [
@@ -179,7 +179,7 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "ID",
-            "description": "<p>文章ID</p>"
+            "description": "<p> ID</p>"
           }
         ]
       }
@@ -218,14 +218,14 @@ define({ "api": [
     ],
     "version": "1.0.0",
     "filename": "router/wpPostsRouter.js",
-    "groupTitle": "文章管理"
+    "groupTitle": " 管理"
   },
   {
     "type": "get",
     "url": "/blog/wpPosts/getWpPosts",
-    "title": "查询文章列表",
+    "title": "查询 列表",
     "name": "getWpPosts",
-    "group": "文章管理",
+    "group": " 管理",
     "parameter": {
       "fields": {
         "Parameter": [
@@ -255,14 +255,14 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "post_author",
-            "description": "<p>文章作者</p>"
+            "description": "<p> 作者</p>"
           },
           {
             "group": "Parameter",
             "type": "String",
             "optional": false,
             "field": "post_title",
-            "description": "<p>文章名.</p>"
+            "description": "<p> 名.</p>"
           },
           {
             "group": "Parameter",
@@ -308,14 +308,14 @@ define({ "api": [
     ],
     "version": "1.0.0",
     "filename": "router/qtPostsRouter.js",
-    "groupTitle": "文章管理"
+    "groupTitle": " 管理"
   },
   {
     "type": "post",
     "url": "/admin/wpPosts/setWpPosts",
-    "title": "添加或修改文章",
+    "title": "添加或修改 ",
     "name": "setWpPosts",
-    "group": "文章管理",
+    "group": " 管理",
     "parameter": {
       "fields": {
         "Parameter": [
@@ -324,14 +324,14 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "ID",
-            "description": "<p>文章ID</p>"
+            "description": "<p> ID</p>"
           },
           {
             "group": "Parameter",
             "type": "String",
             "optional": false,
             "field": "post_author",
-            "description": "<p>文章作者</p>"
+            "description": "<p> 作者</p>"
           },
           {
             "group": "Parameter",
@@ -345,14 +345,14 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "post_content",
-            "description": "<p>文章内容</p>"
+            "description": "<p> 内容</p>"
           },
           {
             "group": "Parameter",
             "type": "String",
             "optional": false,
             "field": "post_title",
-            "description": "<p>文章名.</p>"
+            "description": "<p> 名.</p>"
           },
           {
             "group": "Parameter",
@@ -366,7 +366,7 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "post_status",
-            "description": "<p>文章状态</p>"
+            "description": "<p> 状态</p>"
           },
           {
             "group": "Parameter",
@@ -433,7 +433,7 @@ define({ "api": [
     ],
     "version": "1.0.0",
     "filename": "router/wpPostsRouter.js",
-    "groupTitle": "文章管理"
+    "groupTitle": " 管理"
   },
   {
     "type": "get",
@@ -739,7 +739,7 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "comment_post_ID",
-            "description": "<p>文章ID</p>"
+            "description": "<p> ID</p>"
           },
           {
             "group": "Parameter",
@@ -880,7 +880,7 @@ define({ "api": [
   {
     "type": "get",
     "url": "/blog/wpPosts/getComments",
-    "title": "查询文章评论列表",
+    "title": "查询 评论列表",
     "name": "getComments",
     "group": "留言功能",
     "parameter": {
@@ -891,7 +891,7 @@ define({ "api": [
             "type": "Number",
             "optional": false,
             "field": "comment_post_ID",
-            "description": "<p>评论文章的ID</p>"
+            "description": "<p>评论 的ID</p>"
           }
         ]
       }
