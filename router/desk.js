@@ -26,6 +26,18 @@ router.post('/getdesk',(req,res)=>{
   })
   .catch((error)=>{
     console.log(error)
-    res.send({code:1000,message:'查询成功'})})
+    res.send({code:1000,message:'查询失败'})})
+})
+router.post('/setdesk',(req,res)=>{
+    let {ID} = req.body 
+    let state='0'
+    let orderID=''
+  desk.set(ID,state,orderID)
+  .then((data)=>{
+    res.send({code:200,message:'修改成功',data})
+  })
+  .catch((error)=>{
+    console.log(error)
+    res.send({code:1000,message:'修改失败'})})
 })
 module.exports = router

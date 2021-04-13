@@ -6,6 +6,14 @@ function timestamps() {
   let timestamp=new Date().getTime()
   return timestamp
 }
+function startTime(time) {
+  const nowTimeDate = new Date(time)
+  return nowTimeDate.setHours(0, 0, 0, 0)
+}
+function endTime(time) {
+  const nowTimeDate = new Date(time)
+  return nowTimeDate.setHours(23, 59, 59, 999)
+}
 /**
  * @api {post} /Reservation/addorder 添加或修改 
  * @apiName addorder
@@ -75,6 +83,19 @@ router.post('/getorder',(req,res)=>{
 router.post('/getorderSelect',(req,res)=>{
     let {state} = req.body 
       order.getState(state)
+      .then((data)=>{
+        res.send({code:200,message:'成功',data})
+      })
+      .catch((error)=>{
+        console.log(error)
+        res.send({code:1000,message:'失败'})})
+})
+
+router.post('/getpigData',(req,res)=>{
+  let {date} = req.body 
+      let startdate=startTime(date)
+      let enddate= endTime(date)
+      order.getpigData(startdate,enddate)
       .then((data)=>{
         res.send({code:200,message:'成功',data})
       })

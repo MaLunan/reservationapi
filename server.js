@@ -26,7 +26,31 @@ app.use('/Reservation/',(req, res, next)=>{
   res.header('Access-Control-Allow-Headers', 'Content-Type');
   res.header('Access-Control-Allow-Methods', '*');
   res.header('Content-Type', 'application/json;charset=utf-8');
-  next();
+  let token = req.headers.token
+  // 用户有咩有传token 
+  if(!token){return res.send({code:403,msg:'token缺失'})}
+  // 验证token 是不是真的
+  let data = Jwt.verifyToken(token)
+  if(data){
+    // token 合法 
+    let _id=data._id 
+    // 判断超时 
+    let nowDate=(new Date()).getTime()
+    if(nowDate-data.ctime>=data.ot){
+      return res.send({code:403,msg:'登录超时'})
+    }
+    // 判断id和token是否匹配
+    User.find({_id,token})
+    .then((data)=>{
+      if(data.length===1){
+        next()
+      }else{
+        res.send({code:403,msg:'token失效'})
+      }
+    })
+  }else{
+    res.send({code:403,msg:'未登录'})
+  }
 },[order,desk])
 //登录
 app.use('/user/',(req, res, next)=>{

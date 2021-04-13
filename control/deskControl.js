@@ -2,12 +2,12 @@
 //餐桌查询
 const desk= require('../db/model/desk')
 async function  get(){
-    let data=await desk.find({})
+    let data=await desk.find({}).sort({ID:1})
     return data
 }
 //餐桌修改
-async function  set(ID,post_content,post_excerpt,post_status,comment_status,browse,post_title,type,post_author,post_modified,post_img,editor,post_label,description){
-    let data = await desk.findOne({ID}).updateOne({post_content,post_excerpt,post_status,comment_status,browse,post_title,type,post_author,post_modified,post_img,editor,post_label,description})
+async function  set(ID,state,orderID){
+    let data = await desk.findOne({ID}).updateOne({state,orderID})
     return data
 }
 //餐桌添加

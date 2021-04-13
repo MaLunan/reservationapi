@@ -14,6 +14,74 @@ async function  getState(state){
     }
     return data
 }
+async function  getpigData(startdate,enddate){
+    let Tdatas =await order.aggregate(
+        [   
+            {
+                $match:{
+                    state:'1',
+                    creation:{$gt:startdate,$lte:enddate}
+                }
+            },
+            {   
+                
+                $group:{
+                    _id:null,
+                    amount:{$sum:'$amount'},
+                    people:{$sum:'$people'},
+                }
+            },
+            
+        ]
+    )
+    let Fdatas =await order.aggregate(
+        [   
+            {
+                $match:{
+                    state:'2',
+                    creation:{$gt:startdate,$lte:enddate}
+                }
+            },
+            {   
+                
+                $group:{
+                    _id:null,
+                    amount:{$sum:'$amount'},
+                    people:{$sum:'$people'},
+                }
+            },
+            
+        ]
+    )
+    let Tordernumber=await order.find({state:'1',creation:{$gt:startdate,$lte:enddate}})
+    let Fordernumber=await order.find({state:'2',creation:{$gt:startdate,$lte:enddate}})
+    let way=await order.find({way:'堂食',creation:{$gt:startdate,$lte:enddate}})
+    let Tamount=0
+    let Tpeople=0
+    let Famount=0
+    let Fpeople=0
+    if(Tdatas.length){
+        Tamount=Tdatas[0].amount
+        Tpeople=Tdatas[0].people
+    }
+    if(Fdatas.length){
+        Famount=Fdatas[0].amount
+        Fpeople=Fdatas[0].people
+    }
+    data={
+        Tordernumber:Tordernumber.length,
+        Fordernumber:Fordernumber.length,
+        ordernumber:Fordernumber.length+Tordernumber.length,
+        way:way.length,
+        amount:Tamount+Famount,
+        people:Tpeople+Fpeople,
+        Tamount,
+        Tpeople,
+        Famount,
+        Fpeople,
+    }
+    return data
+}
 //订单修改
 async function  set(ordernumber,state,paymenttime){
     let data = await order.findOne({ordernumber}).updateOne({state,paymenttime})
@@ -22,7 +90,9 @@ async function  set(ordernumber,state,paymenttime){
 //订单添加
 async function  add(ordernumber,people,way,goods,state,creation,amount,desk){
     let data = await order.create({ordernumber,people,way,goods,state,creation,amount})
-    let datas = await desks.findOne({ID:desk}).updateOne({state:'1',orderID:ordernumber})
+    if(way==='堂食'){
+        let datas = await desks.findOne({ID:desk}).updateOne({state:'1',orderID:ordernumber})
+    }
     return data
 }
 
@@ -37,4 +107,4 @@ async function  del(ID){
     return data
 }
 
-module.exports={get,set,add,del,getState}
+module.exports={get,set,add,del,getState,getpigData}
