@@ -55,6 +55,26 @@ router.post('/setorder',(req,res)=>{
         res.send({code:1000,message:'付款失败'})})
 })
 /**
+ * @api {post} /Reservation/unsetorder 退款 
+ * @apiName unsetorder
+ * @apiGroup  管理
+ *
+ * @apiSampleRequest http://localhost:3000/Reservation/unsetorder
+ * @apiVersion 1.0.0
+ **/
+router.post('/unsetorder',(req,res)=>{
+    let {ordernumber} = req.body 
+    let modify=timestamps()
+    let state='2'
+      order.unset(ordernumber,state,modify)
+      .then((data)=>{
+        res.send({code:200,message:'退款成功',data})
+      })
+      .catch((error)=>{
+        console.log(error)
+        res.send({code:1000,message:'退款失败'})})
+})
+/**
  * @api {post} /Reservation/getorder 获取订单信息
  * @apiName getorder
  * @apiGroup  管理

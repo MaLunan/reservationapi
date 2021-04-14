@@ -34,7 +34,6 @@ router.post('/register',(req,res)=>{
    //用户的账号 username 就是邮箱 
    //验证用户发送的验证码是否一致
    User.findOne({username}).then(val=>{
-     console.log(password.length)
      if(password.length<6){
       return res.send({err:1000,message:'密码不得小于6位'})
      }

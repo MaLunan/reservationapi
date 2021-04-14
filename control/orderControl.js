@@ -87,6 +87,11 @@ async function  set(ordernumber,state,paymenttime){
     let data = await order.findOne({ordernumber}).updateOne({state,paymenttime})
     return data
 }
+//订单退款
+async function  unset(ordernumber,state,modify){
+    let data = await order.findOne({ordernumber}).updateOne({state,modify})
+    return data
+}
 //订单添加
 async function  add(ordernumber,people,way,goods,state,creation,amount,desk){
     let data = await order.create({ordernumber,people,way,goods,state,creation,amount})
@@ -107,4 +112,4 @@ async function  del(ID){
     return data
 }
 
-module.exports={get,set,add,del,getState,getpigData}
+module.exports={get,set,add,del,getState,getpigData,unset}
