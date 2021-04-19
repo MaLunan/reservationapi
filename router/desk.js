@@ -7,11 +7,11 @@ function timestamps() {
   return timestamp
 }
 /**
- * @api {get} /Reservation/getdesk 删除
+ * @api {get} /Reservation/getdesk 获取餐桌信息
  * @apiName getdesk
- * @apiGroup 管理
+ * @apiGroup 订桌
  *
- * @apiParam {String} ID ID
+ * @apiParam {String} ID ID(必填)(主键)
  *
  * @apiSuccess {String} error 错误码.
  * @apiSuccess {String} message  提示信息.
@@ -28,6 +28,19 @@ router.post('/getdesk',(req,res)=>{
     console.log(error)
     res.send({code:1000,message:'查询失败'})})
 })
+/**
+ * @api {get} /Reservation/getdesk 获取餐桌信息
+ * @apiName getdesk
+ * @apiGroup 订桌
+ *
+ * @apiParam {String} ID ID
+ *
+ * @apiSuccess {String} error 错误码.
+ * @apiSuccess {String} message  提示信息.
+ * @apiSuccess {Json} data  返回数据.
+ * @apiSampleRequest http://localhost:3000/Reservation/getdesk
+ * @apiVersion 1.0.0
+ **/
 router.post('/setdesk',(req,res)=>{
     let {ID} = req.body 
     let state='0'

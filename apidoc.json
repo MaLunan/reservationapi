@@ -9,5 +9,9 @@
     "template": {
       "withCompare": true,
       "withGenerator": true
+    },
+    "header": {
+      "title": "文档说明",
+      "filename": "header.md"
     }
 }

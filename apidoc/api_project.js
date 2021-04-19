@@ -10,11 +10,15 @@ define({
     "withCompare": true,
     "withGenerator": true
   },
+  "header": {
+    "title": "文档说明",
+    "content": ""
+  },
   "defaultVersion": "0.0.0",
   "apidoc": "0.3.0",
   "generator": {
     "name": "apidoc",
-    "time": "2021-03-05T10:03:54.336Z",
+    "time": "2021-04-14T06:11:26.886Z",
     "url": "https://apidocjs.com",
     "version": "0.26.0"
   }

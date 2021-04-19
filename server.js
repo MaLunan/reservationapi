@@ -8,6 +8,7 @@ const Jwt = require('./utils/jwt')
 const User = require('./db/model/userModel')
 const order =require('./router/order')
 const desk =require('./router/desk')
+const commodity =require('./router/commodity')
 // 启动服务器的同时连接数据库
 const app = express()
 var bodyParser = require('body-parser')
@@ -51,7 +52,7 @@ app.use('/Reservation/',(req, res, next)=>{
   }else{
     res.send({code:403,msg:'未登录'})
   }
-},[order,desk])
+},[order,desk,commodity])
 //登录
 app.use('/user/',(req, res, next)=>{
   //解决跨域
